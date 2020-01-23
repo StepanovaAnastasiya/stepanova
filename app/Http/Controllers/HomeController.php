@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\User;
 use Illuminate\Http\Request;
+
 
 class HomeController extends Controller
 {
@@ -25,4 +26,10 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
+    public function getRegisteredUsers()
+   {
+       $users = User::orderBy('id', 'DESC')->get();
+       return view('partials.users', ['users' => $users]);
+   }
 }
