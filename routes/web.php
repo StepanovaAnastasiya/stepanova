@@ -24,3 +24,9 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/registered/users', 'HomeController@getRegisteredUsers')->name('registered_users');
+
+Route::get('/all/posts', 'HomeController@PostList')->name('all_posts');
+
+Route::get('/create/post', 'HomeController@createPost')->name('create_post');
+
+Route::post('/store/post', 'HomeController@storePost')->name('store_new_post');
