@@ -17,9 +17,6 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -34,3 +31,5 @@ Route::post('/store/post', 'HomeController@storePost')->name('store_new_post');
 Route::get('/edit/post/{post_id}', 'HomeController@editPost')->name('edit_post_form');
 
 Route::post('/update/post/{post_id}', 'HomeController@updatePost')->name('update_post');
+
+Route::post('/delete/post/{post_id}', 'HomeController@deletePost')->name('delete_post');

@@ -25,10 +25,21 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
-    {
-        return view('home');
-    }
+     public function index()
+      {
+          $number_of_posts = Blog::count();
+          $number_of_authors = User::count();
+          $new_posts = Blog::orderBy('id', 'DESC')->take(5)->get();
+          $new_authors = User::orderBy('id', 'DESC')->take(5)->get();
+          $data = [
+              'post_count' => $number_of_posts,
+              'author_count' => $number_of_authors,
+              'new_posts' => $new_posts,
+              'new_authors' => $new_authors,
+          ];
+          return view('home', $data);
+      }
+
 
     public function getRegisteredUsers()
    {
@@ -89,6 +100,13 @@ class HomeController extends Controller
      $post->save();
      return redirect()->route('all_posts')->with('status', 'Post has been successfully updated!');
  }
+   public function deletePost($post_id)
+   {
+       $post = Blog::find($post_id);
+       $post->delete();
+       return redirect()->route('all_posts')->with('status', 'Post has been successfully delete!');
+   }
+
 
 
 }
